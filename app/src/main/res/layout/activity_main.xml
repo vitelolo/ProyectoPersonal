@@ -32,7 +32,7 @@
         android:textColor="@color/colorAccent"
         tools:layout_editor_absoluteX="55dp"
         tools:layout_editor_absoluteY="162dp"
-        />
+        />s
 
 
     <Button
