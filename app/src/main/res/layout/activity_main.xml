@@ -5,7 +5,10 @@
     android:id="@+id/Texto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimary"
+    >
+
 
     <TextView
         android:id="@+id/txtvMorse"
@@ -14,24 +17,33 @@
         android:text="Morse"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="49dp" />
+        tools:layout_editor_absoluteY="49dp"
+        android:textColor="@color/colorPrimaryDark"/>
+
 
     <EditText
         android:id="@+id/etxtInsertar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:background="@color/colorAccent"
         android:ems="10"
         android:hint="Inserte texto"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
         tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="147dp" />
+        tools:layout_editor_absoluteY="162dp"
+        />
+
 
     <Button
         android:id="@+id/btnOK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="69dp"
+        android:layout_height="64dp"
+        android:background="@drawable/boton_redondo"
         android:text="OK"
         tools:layout_editor_absoluteX="275dp"
         tools:layout_editor_absoluteY="144dp" />
+
+
 
 </android.support.constraint.ConstraintLayout>
