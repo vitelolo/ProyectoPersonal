@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.os.CountDownTimer;
+//import android.os.CountDownTimer;
 import  java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText txt;
     private Button btn;
     private LinearLayout ll;
-    private CountDownTimer timer;
+    private Timer timer;
     private int segundo = 1000;
     private boolean timerCorriendo;
 
