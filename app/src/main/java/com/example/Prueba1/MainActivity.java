@@ -1,10 +1,12 @@
 package com.example.Prueba1;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.os.CountDownTimer;
 import  java.util.Timer;
 import java.util.TimerTask;
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText txt;
     private Button btn;
+    private LinearLayout ll;
     private CountDownTimer timer;
     private int segundo = 1000;
     private boolean timerCorriendo;
@@ -22,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         txt = (EditText) findViewById(R.id.etxtInsertar);          //Defino mi editor de texto
         btn = (Button) findViewById(R.id.btnOK);                   //Defino mi boton
+        ll = (LinearLayout) findViewById(R.id.llPrincipal);
+
 
         btn.setOnClickListener(new View.OnClickListener() {     //Al hace click en el boton llamo a un grupo de funciones   morse
             @Override
@@ -33,20 +39,26 @@ public class MainActivity extends AppCompatActivity {
                 Mensaje(txtConvertido);
             }
         });
+
     }
 
-
+    //----------------------------------------------------------------------------------------------Funcion txtMorse (Devuelve una cadena en unos y ceros)
     public String txtAMorse() {
 
-        String txtExtraido = txt.getText().toString();
-        String txtConvertido = "0";
+        String txtExtraido = txt.getText().toString();                      //Extraigo el texto ingresado
+        String txtConvertido = "0";                                         //Creo una cadena que siempre comenzara en apagado
 
-        txtExtraido.toLowerCase();
+        txtExtraido.toLowerCase();                                          //Convierto a minuscula
 
-        char[] txtArray = txtExtraido.toCharArray();
+        char[] txtArray = txtExtraido.toCharArray();                        //Creo un arreglo que contiene todas las letras de la cadena
 
-        for (int i = 0; i < txtArray.length; i++) {
+        for (int i = 0; i < txtArray.length; i++) {                         //Recorro el arreglo
 
+
+
+
+            /*El siguiente switch convierte cada letra en ceros y unos, los ceros representan luz apagada y los unos la luz encendida,
+            al estar dos unos unidos representan la duracion de la luz, sin apagar, el doble de lo que equivale un solo uno*/
 
             switch (txtArray[i]) {
                 case 'a':
@@ -131,24 +143,37 @@ public class MainActivity extends AppCompatActivity {
                     txtConvertido.concat("1101101010");
                     break;
                 case ' ':
-                    txtConvertido.concat("000");
-                    break;
+                    txtConvertido.concat("000");                                  //Espacio entre palabra
                 default:
                     break;
             }
 
-            txtConvertido.concat("00000");
+            txtConvertido.concat("00000");                                        //Final de la oracion
 
         }
 
-        return (txtConvertido);
+        return (txtConvertido);                                                   //Devuelve la cadena convertida en unos y ceros
     }
 
+
+    //----------------------------------------------------------------------------------------------Funcion Mensaje (Devuelve la luz)
     public void Mensaje(String txtConvertido) {
 
         char[] Mensaje = txtConvertido.toCharArray();
 
+        ll.setBackgroundColor(Color.BLACK);
+
         for (int i = 0; i < Mensaje.length; i++) {
+
+            if(Mensaje[i]==1)
+            {
+                ll.setBackgroundColor(Color.WHITE);
+            }else
+            {
+                ll.setBackgroundColor(Color.BLACK);
+            }
+
+
 
         }
 
