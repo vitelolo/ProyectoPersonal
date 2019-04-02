@@ -7,18 +7,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.LinearLayout;
-//import android.os.CountDownTimer;
-import  java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText txt;
     private Button btn;
     private LinearLayout ll;
-    private Timer timer;
     private int segundo = 1000;
-    private boolean timerCorriendo;
+    char[] Mensaje;
+    private int i;
 
 
     @Override
@@ -31,19 +28,31 @@ public class MainActivity extends AppCompatActivity {
         ll = (LinearLayout) findViewById(R.id.llPrincipal);
 
 
-        btn.setOnClickListener(new View.OnClickListener() {     //Al hace click en el boton llamo a un grupo de funciones   morse
+      /*  btn.setOnClickListener(new View.OnClickListener() {     //Al hace click en el boton llamo a un grupo de funciones   morse
             @Override
             public void onClick(View v) {
-                String txtConvertido = txtAMorse();                                  //Llamo a la funcion que define el codigo morse
+                String txtConvertido = Morse();                                  //Llamo a la funcion que define el codigo morse
 
-                Mensaje(txtConvertido);
+                msj(txtConvertido);
             }
-        });
+
+        });*/
 
     }
 
+    //----------------------------------------------------------------------------------------------Funcion llamada al dar click
+
+    public void darClck(View v) {
+
+                String txtConvertido = Morse();                                  //Llamo a la funcion que define el codigo morse
+                msj(txtConvertido);
+
+    }
+
+
+
     //----------------------------------------------------------------------------------------------Funcion txtMorse (Devuelve una cadena en unos y ceros)
-    public String txtAMorse() {
+    public String Morse() {
 
         String txtExtraido = txt.getText().toString();                      //Extraigo el texto ingresado
         String txtConvertido = "0";                                         //Creo una cadena que siempre comenzara en apagado
@@ -157,26 +166,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     //----------------------------------------------------------------------------------------------Funcion Mensaje (Devuelve la luz)
-    public void Mensaje(String txtConvertido) {
+    public void msj(String txtC) {
+        Mensaje = txtC.toCharArray();
 
-        char[] Mensaje = txtConvertido.toCharArray();
-
-        ll.setBackgroundColor(Color.BLACK);
-
-        for (int i = 0; i < Mensaje.length; i++) {
-
-            if(Mensaje[i]==1)
-            {
-                ll.setBackgroundColor(Color.WHITE);
-            }else
-            {
-                ll.setBackgroundColor(Color.BLACK);
-            }
+        for (i = 0; i < Mensaje.length; i++) {
 
 
+                    if (Mensaje[i] == 1) {
+                        ll.setBackgroundColor(Color.WHITE);
+                    } else {
+                        ll.setBackgroundColor(Color.BLACK);
+                    }
 
+
+                    try {
+                        Thread.sleep(segundo);
+                    }
+                    catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                }
         }
-
-    }
-
 }

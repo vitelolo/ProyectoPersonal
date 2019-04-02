@@ -17,7 +17,9 @@
         android:id="@+id/llPrincipal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#000">
+
 
         <TextView
             android:id="@+id/txtvMorse"
@@ -41,7 +43,7 @@
             android:ems="10"
             android:hint="Inserte texto"
             android:inputType="textPersonName"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="231dp"
             android:layout_marginTop="10dp"
@@ -50,14 +52,16 @@
 
         <Button
             android:id="@+id/btnOK"
+            style="@android:style/Widget.Button.Toggle"
             android:layout_width="69dp"
             android:layout_height="64dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/boton_redondo"
+            android:onClick="darClck"
             android:text="OK"
             tools:layout_editor_absoluteX="302dp"
-            tools:layout_editor_absoluteY="216dp"
-            android:layout_marginTop="10dp"/>
+            tools:layout_editor_absoluteY="216dp" />
 
     </LinearLayout>
 
