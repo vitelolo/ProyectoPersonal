@@ -1,0 +1,349 @@
+
+import java.awt.Color;
+import java.util.Timer; 
+import java.util.TimerTask;
+
+public class jk extends javax.swing.JFrame {
+    
+
+      
+    public jk() {
+        initComponents();
+    }
+
+    
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("click");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(jButton1)
+                        .addGap(32, 32, 32)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(69, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21))
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        
+    }                                        
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
+
+       String textoExtraido= jTextField1.getText();
+       
+        String txtConvertido = Morse(textoExtraido);
+                msj(txtConvertido);
+    }                                     
+           
+    
+    
+    public String Morse(String txtExtraido) {
+        
+                 //Extraigo el texto ingresado
+        String txtConvertido = "00";                                         //Creo una cadena que siempre comenzara en apagado
+
+        txtExtraido.toLowerCase();                                          //Convierto a minuscula
+
+        char[] txtArray = txtExtraido.toCharArray();                        //Creo un arreglo que contiene todas las letras de la cadena
+
+        for (int i = 0; i < txtArray.length; i++) {                         //Recorro el arreglo  
+            txtConvertido=txtConvertido +"0";
+            switch (txtArray[i]) {
+                case 'a':
+                    txtConvertido=txtConvertido + "10110";
+                    break; //a-z
+                case 'b':
+                    txtConvertido=txtConvertido +"110101010";
+                    break;
+                case 'c':
+                    txtConvertido=txtConvertido +"1101011010";
+                    break;
+                case 'd':
+                    txtConvertido=txtConvertido +"1101010";
+                    break;
+                case 'e':
+                    txtConvertido=txtConvertido +"10";
+                    break;
+                case 'f':
+                    txtConvertido=txtConvertido +"101011010";
+                    break;
+                case 'g':
+                    txtConvertido=txtConvertido +"11011010";
+                    break;
+                case 'h':
+                    txtConvertido=txtConvertido +"10101010";
+                    break;
+                case 'i':
+                    txtConvertido=txtConvertido +"1010";
+                    break;
+                case 'j':
+                    txtConvertido=txtConvertido +"10110110110 ";
+                    break;
+                case 'k':
+                    txtConvertido=txtConvertido +"11010110";
+                    break;
+                case 'l':
+                    txtConvertido=txtConvertido +"101101010";
+                    break;
+                case 'm':
+                    txtConvertido=txtConvertido +"110110";
+                    break;
+                case 'n':
+                    txtConvertido=txtConvertido +"11010";
+                    break;
+                case 'ñ':
+                    txtConvertido=txtConvertido +"11011010110110";
+                    break;
+                case 'o':
+                    txtConvertido=txtConvertido +"110110110";
+                    break;
+                case 'p':
+                    txtConvertido=txtConvertido +"1011011010";
+                    break;
+                case 'q':
+                    txtConvertido=txtConvertido +"11011010110 ";
+                    break;
+                case 'r':
+                    txtConvertido=txtConvertido +"1011010";
+                    break;
+                case 's':
+                    txtConvertido=txtConvertido +"101010";
+                    break;
+                case 't':
+                    txtConvertido=txtConvertido +"110";
+                    break;
+                case 'u':
+                    txtConvertido=txtConvertido +"1010110";
+                    break;
+                case 'v':
+                    txtConvertido=txtConvertido +"101010110";
+                    break;
+                case 'w':
+                    txtConvertido=txtConvertido +"10110110";
+                    break;
+                case 'x':
+                    txtConvertido=txtConvertido +"1101010110";
+                    break;
+                case 'y':
+                    txtConvertido=txtConvertido +"11010110110";
+                    break;
+                case 'z':
+                    txtConvertido=txtConvertido +"1101101010";
+                    break;
+                
+                
+                case '0':
+                    txtConvertido=txtConvertido +"110110110110110";
+                    break;
+                case '1':
+                    txtConvertido=txtConvertido +"10110110110110";
+                    break;
+                case '2':
+                    txtConvertido=txtConvertido +"1010110110110";
+                    break;
+                case '3':
+                    txtConvertido=txtConvertido +"101010110110";
+                    break;
+                case '4':
+                    txtConvertido=txtConvertido +"10101010110";
+                    break;
+                case '5':
+                    txtConvertido=txtConvertido +"1010101010";
+                    break;
+                case '6':
+                    txtConvertido=txtConvertido +"11010101010";
+                    break;
+                case '7':
+                    txtConvertido=txtConvertido +"110110101010";
+                    break;
+                case '8':
+                    txtConvertido=txtConvertido +"1101101101010";
+                    break;    
+                case '9':
+                    txtConvertido=txtConvertido +"11011011011010";
+                    break;
+                    
+                 
+                    
+                    
+                    
+                    
+                case ' ':
+                    txtConvertido=txtConvertido +"000";   
+                    break;                                  //Espacio entre palabra
+                default:
+                    break;
+            }
+
+                                                  
+        }
+        txtConvertido=txtConvertido +"00000";           //Final de la oracion
+        return (txtConvertido);                                                   //Devuelve la cadena convertida en unos y ceros
+    }
+    
+    
+    public void msj(String txtC) {
+        int j;
+        char[] Mensaje;
+        Mensaje = txtC.toCharArray();
+        j= 0;
+        
+        
+        
+        
+                Timer timer = new Timer();
+                TimerTask timerTask = new TimerTask(){
+                
+                int i=0;
+                 
+                public void run(){
+                    
+                    
+                    if(Mensaje.length <= i)
+                    {
+                        timer.cancel();
+                    }
+                    decision(Mensaje, i);
+                    i++;
+                    
+                   }
+                
+                };
+                timer.schedule(timerTask, 0, 1000);  
+                
+             
+
+
+
+        
+        
+               
+     }    
+    
+    
+
+        
+        
+        
+
+        
+     
+     
+   public int decision(char [] Mensaje, int j) {
+       
+       if (Mensaje[j]  != '0') {
+                jPanel1.setBackground(Color.white);
+                        
+            
+            } else {
+                
+                jPanel1.setBackground(Color.black);
+                        
+            }
+       
+       j++;
+       return (j);
+   }
+
+
+        
+    
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(jk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(jk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(jk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(jk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new jk().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    // End of variables declaration                   
+   
+}
