@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import java.util.Timer;
-import java.util.TimerTask;
-
+import android.os.Handler;
+import android.os.AsyncTask;
+/*import java.util.Timer;
+import java.util.TimerTask; */
 public class MainActivity extends AppCompatActivity {
 
     private EditText txt;
@@ -27,11 +28,12 @@ public class MainActivity extends AppCompatActivity {
         ll = (LinearLayout) findViewById(R.id.llPrincipal);
 
 
+
       btn.setOnClickListener(new View.OnClickListener() {     //Al hace click en el boton llamo a un grupo de funciones   morse
             @Override
             public void onClick(View v) {
                 String txtConvertido = Morse();                                  //Llamo a la funcion que define el codigo morse
-
+                ll.setBackgroundColor(Color.WHITE);
                 msj(txtConvertido);
             }
 
@@ -201,7 +203,49 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------Funcion Mensaje (Devuelve la luz)
     public void msj(final String txtC) {
 
+        final int i=0;
+        final char[] Mensaje = txtC.toCharArray();
 
+        for(int j=0;i<Mensaje.length;j++ ) {
+//-----------------------------------------------------------------------------------------------SISI
+            /*if (Mensaje[i]  != '0') {
+                ll.setBackgroundColor(Color.WHITE);
+
+
+            } else {
+
+                ll.setBackgroundColor(Color.BLACK);
+
+            }
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
+            }*/
+//-----------------------------------------------------------------------------------------------NNONONO
+            final Handler hand = new Handler();
+            j = i;
+
+            Runnable tim = new Runnable() {
+
+
+                public void run() {
+                    if (Mensaje[i] != '0') {
+                        ll.setBackgroundColor(Color.WHITE);
+
+
+                    } else {
+
+                        ll.setBackgroundColor(Color.BLACK);
+
+                    }
+
+                }
+            };hand.postDelayed(tim, 1000);
+        }
+//-----------------------------------------------------------------------------------------------SISISIS
+        /*
         final Timer timer = new Timer();
         TimerTask timerTask = new TimerTask(){
 
@@ -221,9 +265,35 @@ public class MainActivity extends AppCompatActivity {
             }
 
         };
-        timer.schedule(timerTask, 0, 1000);
-    }
+        timer.schedule(timerTask, 0, 1000)
 
+    */
+//-----------------------------------------------------------------------------------------------NONNONO
+    }
+//-----------------------------------------------------------------------------------------------SISISISI
+    /*
+
+
+
+    new Tread (new Runnable(){
+	    @Override
+
+	        public void tun(){
+
+	            //funcion segundo
+
+	        runOnUiThread(new Runnable(){
+		        @Override
+		        public void run(){
+
+			        //ll
+
+		        }
+	        });
+
+	    }
+
+    });stat();
 
 
     public int decision(char [] Mensaje, int j) {
@@ -241,4 +311,45 @@ public class MainActivity extends AppCompatActivity {
         j++;
         return (j);
     }
+    */
+//-----------------------------------------------------------------------------------------------NONONO
+
+
+    private class equicosaAsyncTask  extends AsyncTask<Void, Integer, Void>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+
+
+    }
+
+
+
+
+
 }
+
+
+
+
