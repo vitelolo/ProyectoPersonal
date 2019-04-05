@@ -7,15 +7,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.os.Handler;
 import android.os.AsyncTask;
-/*import java.util.Timer;
-import java.util.TimerTask; */
+import android.widget.Toast;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText txt;
     private Button btn;
     private LinearLayout ll;
+
 
 
     @Override
@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String txtConvertido = Morse();                                  //Llamo a la funcion que define el codigo morse
-                ll.setBackgroundColor(Color.WHITE);
-                msj(txtConvertido);
+                char[] Mensaje = txtConvertido.toCharArray();
+                cosoAsyncTask cosa = new cosoAsyncTask();
+                cosa.execute(txtConvertido);
             }
 
         });
@@ -50,15 +51,14 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------Funcion txtMorse (Devuelve una cadena en unos y ceros)
     public String Morse() {
 
-        String txtExtraido = txt.getText().toString();                      //Extraigo el texto ingresado
-        String txtConvertido = "00";                                         //Creo una cadena que siempre comenzara en apagado
+        String txtExtraido = txt.getText().toString();//Extraigo el texto ingresado
+        String txtConvertido = "0";//Creo una cadena que siempre comenzara en apagado
 
-        txtExtraido.toLowerCase();                                          //Convierto a minuscula
+        txtExtraido.toLowerCase();//Convierto a minuscula
 
-        char[] txtArray = txtExtraido.toCharArray();                        //Creo un arreglo que contiene todas las letras de la cadena
+        char[] txtArray = txtExtraido.toCharArray();//Creo un arreglo que contiene todas las letras de la cadena
 
-        for (int i = 0; i < txtArray.length; i++) {                         //Recorro el arreglo
-
+        for (int i = 0; i < txtArray.length; i++) {
 
 
 
@@ -182,166 +182,88 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
                 case ' ':
-                    txtConvertido=txtConvertido +"000";     //Espacio entre palabra
+                    txtConvertido=txtConvertido +"00";     //Espacio entre palabra
                     break;
                 default:
                     break;
             }
 
-            txtConvertido=txtConvertido +("00000");                                        //Final de la oracion
+            txtConvertido=txtConvertido +"0";     //Espacio entre letra
 
         }
 
-        return (txtConvertido);                                                   //Devuelve la cadena convertida en unos y ceros
+        txtConvertido=txtConvertido +("0");//Final de la oracion
+
+        return (txtConvertido);//Devuelve la cadena convertida en unos y ceros
     }
 
 
-    //----------------------------------------------------------------------------------------------Funcion Mensaje (Devuelve la luz)
-    public void msj(final String txtC) {
 
-        final int i=0;
-        final char[] Mensaje = txtC.toCharArray();
+    //----------------------------------------------------------------------------------------------Clase que genera hilo asincrono
 
-        for(int j=0;i<Mensaje.length;j++ ) {
-//-----------------------------------------------------------------------------------------------SISI
-            /*if (Mensaje[i]  != '0') {
-                ll.setBackgroundColor(Color.WHITE);
+    private class cosoAsyncTask  extends AsyncTask<String, Boolean, Boolean>{
 
-
-            } else {
-
-                ll.setBackgroundColor(Color.BLACK);
-
-            }
-
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new IllegalStateException(e);
-            }*/
-//-----------------------------------------------------------------------------------------------NNONONO
-            final Handler hand = new Handler();
-            j = i;
-
-            Runnable tim = new Runnable() {
-
-
-                public void run() {
-                    if (Mensaje[i] != '0') {
-                        ll.setBackgroundColor(Color.WHITE);
-
-
-                    } else {
-
-                        ll.setBackgroundColor(Color.BLACK);
-
-                    }
-
-                }
-            };hand.postDelayed(tim, 1000);
-        }
-//-----------------------------------------------------------------------------------------------SISISIS
-        /*
-        final Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask(){
-
-            int i=0;
-            char[] Mensaje = txtC.toCharArray();
-
-            public void run(){
-
-
-                if(Mensaje.length <= i)
-                {
-                    timer.cancel();
-                }
-                decision(Mensaje, i);
-                i++;
-
-            }
-
-        };
-        timer.schedule(timerTask, 0, 1000)
-
-    */
-//-----------------------------------------------------------------------------------------------NONNONO
-    }
-//-----------------------------------------------------------------------------------------------SISISISI
-    /*
-
-
-
-    new Tread (new Runnable(){
-	    @Override
-
-	        public void tun(){
-
-	            //funcion segundo
-
-	        runOnUiThread(new Runnable(){
-		        @Override
-		        public void run(){
-
-			        //ll
-
-		        }
-	        });
-
-	    }
-
-    });stat();
-
-
-    public int decision(char [] Mensaje, int j) {
-
-        if (Mensaje[j]  != '0') {
-            ll.setBackgroundColor(Color.WHITE);
-
-
-        } else {
-
-            ll.setBackgroundColor(Color.BLACK);
-
-        }
-
-        j++;
-        return (j);
-    }
-    */
-//-----------------------------------------------------------------------------------------------NONONO
-
-
-    private class equicosaAsyncTask  extends AsyncTask<Void, Integer, Void>{
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute() {                                                             //Prepara en Linear Layout en color negro
             super.onPreExecute();
+            ll.setBackgroundColor(Color.BLACK);
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-            return null;
+        protected void onPostExecute(Boolean resultado) {                                           //Finaliza el proceo enviando un mensaje finalizado
+            //super.onPostExecute(aVoid);
+            if(resultado)
+            {
+                ll.setBackgroundColor(Color.BLACK);//Devuelve pantalla negra
+                Toast.makeText(getBaseContext(), "Finalizado", Toast.LENGTH_LONG).show();
+            }
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-        }
+        protected void onProgressUpdate(Boolean... values) {                                        //Actualiza el color del LinearLayout
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
+            if (values[0]) {
+                ll.setBackgroundColor(Color.WHITE);
+            } else {
+                ll.setBackgroundColor(Color.BLACK);
+            }
             super.onProgressUpdate(values);
         }
 
         @Override
         protected void onCancelled() {
+
             super.onCancelled();
         }
 
+        @Override
+        protected Boolean doInBackground(String... strings) {                                       //Recorre el array para cambiar los colores de la pantalla y pausa 1 segundo
+            String txtC = strings[0];
+            char[] Mensaje = txtC.toCharArray();
 
+            for(int i=0;i<Mensaje.length;i++ ) {
+
+                if (isCancelled()) {
+                    break;
+                }
+
+                if (Mensaje[i]  != '1') {
+                    publishProgress(false);
+                } else {
+                    publishProgress(true);
+                }
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException(e);
+                }
+
+
+            }
+            return true;
+        }
     }
 
 
